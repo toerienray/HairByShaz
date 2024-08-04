@@ -14,7 +14,7 @@
             padding: 0;
         }
         header {
-            background-color: #ff5722;
+            background: url('lion_head.webp') no-repeat center center/cover;
             color: #fff;
             text-align: center;
             padding: 50px 0;
@@ -65,6 +65,7 @@
             margin: 15px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
         footer {
             background-color: #333;
@@ -105,49 +106,116 @@
         .contact-form button:hover {
             background-color: #e64a19;
         }
+
+        /* Lightbox container */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Lightbox content */
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1000px;
+        }
+
+        /* Lightbox slides */
+        .lightbox-slides {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .lightbox-slides img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Next/previous controls */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            user-select: none;
+            -webkit-user-select: none;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Add animation to the lightbox slides */
+        .lightbox-slides {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 0.5s;
+            animation-name: fade;
+            animation-duration: 0.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<script>
-    let slideIndex = 1;
-
-    function openLightbox() {
-        document.getElementById("lightbox").style.display = "block";
-        showSlides(slideIndex);
-    }
-
-    function closeLightbox() {
-        document.getElementById("lightbox").style.display = "none";
-    }
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let slides = document.getElementsByClassName("lightbox-slides");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        slides[slideIndex-1].style.display = "block";  
-    }
-</script>
-
-    </head>
+</head>
 
 <body>
 
-<header style="background: url('lion_head.webp') no-repeat center center/cover;">
-        <div style="background: rgba(0, 0, 0, 0.5); padding: 100px 0; text-align: center;">
-    <h1>Hair by Shaz</h1>
-    <p>Your Go-To Salon for Stylish Braids in Lentegeur, Mitchell's Plain</p>
-</div></header>
+<header>
+    <div style="background: rgba(0, 0, 0, 0.5); padding: 100px 0; text-align: center;">
+        <h1>Hair by Shaz</h1>
+        <p>Your Go-To Salon for Stylish Braids in Lentegeur, Mitchell's Plain</p>
+    </div>
+</header>
 
 <nav>
     <a href="#about">About Us</a>
@@ -176,12 +244,39 @@
 <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
-        <img src="Box_braids.jpg" alt="Cornrows Style">
-        <img src="Cornrows.jpg" alt="Boxed Braids">
-        <img src="Knotless.jpg" alt="Knotless Braids">
-		<img src="Pricelist.jpg" alt="Knotless Braids">
+        <img src="Box_braids.jpg" alt="Boxed Braids" onclick="openLightbox();currentSlide(1)">
+        <img src="Cornrows.jpg" alt="Cornrows Style" onclick="openLightbox();currentSlide(2)">
+        <img src="Knotless.jpg" alt="Knotless Braids" onclick="openLightbox();currentSlide(3)">
+        <img src="Pricelist.jpg" alt="Pricelist" onclick="openLightbox();currentSlide(4)">
     </div>
 </section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="close cursor" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content">
+
+        <div class="lightbox-slides">
+            <img src="Box_braids.jpg" alt="Boxed Braids">
+        </div>
+
+        <div class="lightbox-slides">
+            <img src="Cornrows.jpg" alt="Cornrows Style">
+        </div>
+
+        <div class="lightbox-slides">
+            <img src="Knotless.jpg" alt="Knotless Braids">
+        </div>
+
+        <div class="lightbox-slides">
+            <img src="Pricelist.jpg" alt="Pricelist">
+        </div>
+
+        <!-- Next/previous controls -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+</div>
 
 <section id="testimonials">
     <h2>Testimonials</h2>
@@ -220,6 +315,36 @@
 </a>
 </footer>
 
+<script>
+    let slideIndex = 1;
+
+    function openLightbox() {
+        document.getElementById("lightbox").style.display = "block";
+        showSlides(slideIndex);
+    }
+
+    function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+    }
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("lightbox-slides");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slides[slideIndex-1].style.display = "block";  
+    }
+</script>
 
 </body>
 </html>
