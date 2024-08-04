@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair by Shaz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff5722;
+            color: #fff;
+            text-align: center;
+            padding: 50px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 600;
+        }
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        nav {
+            background-color: #fff;
+            color: #333;
+            text-align: center;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ff5722;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        section h2 {
+            color: #ff5722;
+            border-bottom: 2px solid #ffccbc;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 2em;
+        }
+        .gallery img {
+            width: 100%;
+            max-width: 300px;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ff5722;
+            outline: none;
+        }
+        .contact-form button {
+            background-color: #ff5722;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+
+<body>
+
+<header style="background: url(file:///C:/Users/RayRay/OneDrive/Documents/Private/Website/lion_head.webp) no-repeat center center/cover;">
+        <div style="background: rgba(0, 0, 0, 0.5); padding: 100px 0; text-align: center;">
+    <h1>Hair by Shaz</h1>
+    <p>Your Go-To Salon for Stylish Braids in Lentegeur, Mitchell's Plain</p>
+</div></header>
+
+<nav>
+    <a href="#about">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>Welcome to Hair by Shaz! Our salon, located in Lentegeur, Mitchell's Plain, specializes in creating beautiful and stylish braids, including cornrows, boxed braids, and knotless braids. With years of experience and a passion for hair styling, we are dedicated to providing our clients with the best service and a look they'll love.</p>
+</section>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <ul>
+        <li>Cornrows</li>
+        <li>Boxed Braids</li>
+        <li>Knotless Braids</li>
+        <li>Hair Treatments</li>
+        <li>Custom Styles</li>
+    </ul>
+</section>
+
+<section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+        <img src="Box_braids.jpg" alt="Cornrows Style">
+        <img src="Cornrows.jpg" alt="Boxed Braids">
+        <img src="Knotless.jpg" alt="Knotless Braids">
+		<img src="Pricelist.jpg" alt="Knotless Braids">
+    </div>
+</section>
+
+<section id="testimonials">
+    <h2>Testimonials</h2>
+    <p>"Shaz is amazing! I always leave the salon feeling fabulous. Her braiding skills are top-notch!" - Customer A</p>
+    <p>"The best salon experience I've ever had. Friendly service and beautiful results every time." - Customer B</p>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Ready to book your appointment or have questions? Get in touch with us!</p>
+    <div class="contact-form">
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Hair by Shaz | Lentegeur, Mitchell's Plain</p>
+
+    <p>Follow us on:</p>
+   <a href="https://www.instagram.com/_hairbyshaz?utm_source=qr&igsh=MXQxM24xZHNxZm1oNQ==" target="_blank">
+    <i class="fab fa-instagram"></i>
+</a>
+<a href="https://www.facebook.com/profile.php?id=61562780050873&mibextid=PrwyjqcTLlksUAL4" target="_blank">
+    <i class="fab fa-facebook"></i>
+</a>
+</footer>
+
+
+</body>
+</html>
