@@ -1,361 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hair by Shaz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: url('hair_curl.webp') no-repeat center center/cover;
-            color: #fff;
-            text-align: center;
-            padding: 50px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 3em;
-            font-weight: 600;
-        }
-        header p {
-            font-size: 1.2em;
-            font-weight: 300;
-        }
-        nav {
-            background-color: #fff;
-            color: #333;
-            text-align: center;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #ff5722;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        section h2 {
-            color: #ff5722;
-            border-bottom: 2px solid #ffccbc;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-weight: 600;
-            font-size: 2em;
-        }
-        .gallery img {
-            width: 100%;
-            max-width: 300px;
-            margin: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-        }
-        .contact-form label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: 500;
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            transition: border-color 0.3s ease;
-        }
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: #ff5722;
-            outline: none;
-        }
-        .contact-form button {
-            background-color: #ff5722;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .contact-form button:hover {
-            background-color: #e64a19;
-        }
-
-        /* Lightbox container */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        /* Lightbox content */
-        .lightbox-content {
-            position: relative;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 1000px;
-        }
-
-        /* Lightbox slides */
-        .lightbox-slides {
-            display: none;
-            width: 100%;
-            text-align: center;
-        }
-
-        .lightbox-slides img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-
-        /* Next/previous controls */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            user-select: none;
-            -webkit-user-select: none;
-            transform: translateY(-50%);
-        }
-
-        .next {
-            right: 0;
-            border-radius: 0 3px 3px 0;
-        }
-
-        .prev {
-            left: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        /* Close button */
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Add animation to the lightbox slides */
-        .lightbox-slides {
-            -webkit-animation-name: fade;
-            -webkit-animation-duration: 0.5s;
-            animation-name: fade;
-            animation-duration: 0.5s;
-        }
-
-        @-webkit-keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-
-        /* Social Media Icons */
-        .social-icons a {
-            margin: 0 15px;
-            color: white;
-            font-size: 2em; /* Increased size */
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: #ff5722;
-        }
-    </style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern AI Assistant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<header>
-    <div style="background: rgba(0, 0, 0, 0.5); padding: 100px 0; text-align: center;">
-        <h1>Hair by Shaz</h1>
-        <p>Your Go-To Salon for Stylish Braids in Lentegeur, Mitchell's Plain</p>
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="image1.jpg" alt="Logo" />
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="ai-search" placeholder="Ask me anything..." />
+        <button id="search-button">Search</button>
+      </div>
     </div>
-</header>
+  </header>
 
-<nav>
-    <a href="#about">About Us</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<section id="about">
-    <h2>About Us</h2>
-    <p>Welcome to Hair by Shaz! Our salon, located in Lentegeur, Mitchell's Plain, specializes in creating beautiful and stylish braids, including cornrows, boxed braids, and knotless braids. With years of experience and a passion for hair styling, we are dedicated to providing our clients with the best service and a look they'll love.</p>
-</section>
-
-<section id="services">
-    <h2>Our Services</h2>
-    <ul>
-        <li>Cornrows</li>
-        <li>Boxed Braids</li>
-        <li>Knotless Braids</li>
-        <li>Hair Treatments</li>
-        <li>Custom Styles</li>
-    </ul>
-</section>
-
-<section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-        <img src="Box_braids.jpg" alt="Boxed Braids" onclick="openLightbox();currentSlide(1)">
-        <img src="Cornrows.jpg" alt="Cornrows Style" onclick="openLightbox();currentSlide(2)">
-        <img src="Knotless.jpg" alt="Knotless Braids" onclick="openLightbox();currentSlide(3)">
-        <img src="Pricelist.jpg" alt="Pricelist" onclick="openLightbox();currentSlide(4)">
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Welcome to Our AI Assistant Website</h1>
+      <p>Your guide to the future, powered by AI.</p>
+      <img src="image2.jpg" alt="Hero Image" class="hero-image" />
     </div>
-</section>
+  </section>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox">
-    <span class="close cursor" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content">
-
-        <div class="lightbox-slides">
-            <img src="Box_braids.jpg" alt="Boxed Braids">
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Features</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <img src="image3.jpg" alt="Smart Search" />
+          <h3>Smart Search</h3>
+          <p>Experience fast and intelligent search results.</p>
         </div>
-
-        <div class="lightbox-slides">
-            <img src="Cornrows.jpg" alt="Cornrows Style">
+        <div class="feature-item">
+          <img src="image4.jpg" alt="Personalized Assistance" />
+          <h3>Personalized Assistance</h3>
+          <p>Get recommendations tailored just for you.</p>
         </div>
-
-        <div class="lightbox-slides">
-            <img src="Knotless.jpg" alt="Knotless Braids">
+        <div class="feature-item">
+          <img src="image5.jpg" alt="Modern Design" />
+          <h3>Modern Design</h3>
+          <p>Enjoy a sleek, modern, and intuitive user interface.</p>
         </div>
-
-        <div class="lightbox-slides">
-            <img src="Pricelist.jpg" alt="Pricelist">
-        </div>
-
-        <!-- Next/previous controls -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
     </div>
-</div>
+  </section>
 
-<section id="testimonials">
-    <h2>Testimonials</h2>
-    <p>"Shaz is amazing! I always leave the salon feeling fabulous. Her braiding skills are top-notch!" - Customer A</p>
-    <p>"The best salon experience I've ever had. Friendly service and beautiful results every time." - Customer B</p>
-</section>
-
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>Ready to book your appointment or have questions? Get in touch with us!</p>
-    <div class="contact-form">
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-
-            <button type="submit">Send Message</button>
-        </form>
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        We are dedicated to integrating cutting-edge AI technologies with user-friendly design to deliver exceptional assistance and guidance.
+      </p>
+      <img src="image6.jpg" alt="About Us" />
     </div>
-</section>
+  </section>
 
-<footer>
-    <p>&copy; 2024 Hair by Shaz | Lentegeur, Mitchell's Plain</p>
-
-    <p>Follow us on:</p>
-    <div class="social-icons">
-        <a href="https://www.instagram.com/_hairbyshaz?utm_source=qr&igsh=MXQxM24xZHNxZm1oNQ==" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=61562780050873&mibextid=PrwyjqcTLlksUAL4" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/c/27616148124" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
     </div>
-</footer>
+  </section>
 
-<script>
-    let slideIndex = 1;
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Modern AI Assistant. All rights reserved.</p>
+    </div>
+  </footer>
 
-    function openLightbox() {
-        document.getElementById("lightbox").style.display = "block";
-        showSlides(slideIndex);
-    }
-
-    function closeLightbox() {
-        document.getElementById("lightbox").style.display = "none";
-    }
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let slides = document.getElementsByClassName("lightbox-slides");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        slides[slideIndex-1].style.display = "block";  
-    }
-</script>
-
+  <!-- Load main JavaScript module -->
+  <script type="module" src="main.js"></script>
 </body>
 </html>
