@@ -227,6 +227,60 @@ body {
   background: #0056b3;
 }
 
+/* Ask Me Anything Section */
+.ask {
+  padding: 60px 0;
+  background: #fff;
+}
+
+.ask h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.ask-container {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+}
+
+.ask-container input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.ask-container button {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.ask-container button:hover {
+  background: #0056b3;
+}
+
+.ask-response {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
 /* Footer */
 .footer {
   background: #333;
