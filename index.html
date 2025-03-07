@@ -16,7 +16,7 @@
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#ask">Ask</a></li>
-          <!-- Smart Search link remains if you want a separate page -->
+          <!-- Smart Search link remains (if you have a separate page) -->
           <li><a href="smart_search.html">Smart Search</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="personalized_assistance.html">Personalized Assistance</a></li>
@@ -27,7 +27,6 @@
       <!-- Quick search in header -->
       <div class="search-bar">
         <input type="text" id="ai-search" placeholder="Ask me anything..."/>
-        <!-- Removed the old onclick; now we handle it via JavaScript -->
         <button id="search-button">Search</button>
       </div>
     </div>
@@ -52,11 +51,11 @@
       <h2>Ask Me Anything</h2>
       <div class="ask-container">
         <input type="text" id="ask-input" placeholder="Type your question here..."/>
-        <!-- Removed the old onclick; now we handle it via JavaScript -->
         <button id="ask-button">Ask</button>
       </div>
-      <!-- This is where AI responses will be displayed -->
-      <div id="ask-response" class="ask-response"></div>
+      <div id="ask-response" class="ask-response">
+        <!-- AI responses will be displayed here -->
+      </div>
     </div>
   </section>
 
@@ -122,35 +121,30 @@
 
   <!-- Main JavaScript (inline for simplicity) -->
   <script>
-    // This function sends the user's question to your Flask server at /ask
+    // Function to send a question to the Flask server and display the answer
     async function askServer(questionText, source) {
-      // Show a temporary message while waiting for the response
+      // Provide feedback while searching
       if (source === 'header') {
-        // For the header search, let's just show an alert that we're searching
         alert("Searching for an answer...");
       } else {
-        // For the main "Ask Me Anything" section, we display a message in ask-response
         document.getElementById('ask-response').textContent = "Searching for an answer...";
       }
-
+      
       try {
-        // Make a POST request to /ask
-        const response = await fetch('/ask', {
+        const response = await fetch("http://127.0.0.1:5000/ask", { // Use full URL here
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: 'query=' + encodeURIComponent(questionText)
         });
         const data = await response.json();
         const answer = data.answer;
-
-        // Display the answer
+        
         if (source === 'header') {
           alert("Answer: " + answer);
         } else {
           document.getElementById('ask-response').textContent = "Answer: " + answer;
         }
       } catch (error) {
-        // If something goes wrong, display an error message
         if (source === 'header') {
           alert("Oops! Something went wrong. Please try again.");
         } else {
@@ -159,7 +153,7 @@
       }
     }
 
-    // Handle the "Search" button in the header
+    // Event listener for header search button
     document.getElementById('search-button').addEventListener('click', () => {
       const headerQuery = document.getElementById('ai-search').value.trim();
       if (headerQuery) {
@@ -169,7 +163,7 @@
       }
     });
 
-    // Handle the "Ask" button in the "Ask Me Anything" section
+    // Event listener for "Ask Me Anything" button
     document.getElementById('ask-button').addEventListener('click', () => {
       const mainQuery = document.getElementById('ask-input').value.trim();
       if (mainQuery) {
