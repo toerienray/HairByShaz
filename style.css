@@ -89,7 +89,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background: url('image2.jpg') no-repeat center center/cover;
+  background: url('backshow.mp4') no-repeat center center/cover;
   background-size: contain; /* Or auto, depending on your layout needs */
   height: 60vh;
   display: flex;
