@@ -16,6 +16,7 @@
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#ask">Ask</a></li>
+          <!-- Keep this link if you also have a separate smart_search.html page -->
           <li><a href="smart_search.html">Smart Search</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="personalized_assistance.html">Personalized Assistance</a></li>
@@ -26,7 +27,6 @@
       <!-- Quick search in header -->
       <div class="search-bar">
         <input type="text" id="ai-search" placeholder="Ask me anything..."/>
-        <!-- We'll handle this button with JavaScript, not a direct link -->
         <button id="search-button">Search</button>
       </div>
     </div>
@@ -51,11 +51,10 @@
       <h2>Ask Me Anything</h2>
       <div class="ask-container">
         <input type="text" id="ask-input" placeholder="Type your question here..."/>
-        <!-- We'll handle this button with JavaScript, not a direct link -->
         <button id="ask-button">Ask</button>
       </div>
       <div id="ask-response" class="ask-response">
-        <!-- The AI responses will be displayed here -->
+        <!-- AI responses will be displayed here -->
       </div>
     </div>
   </section>
@@ -122,57 +121,60 @@
 
   <!-- Main JavaScript (inline for simplicity) -->
   <script>
-    // This function will send a POST request to the Flask server's /ask route
-    async function askServer(question) {
-      // Show a loading message in the relevant area
-      // We'll decide which area based on which button is clicked
-      let responseDiv;
-      if (question.source === 'header') {
-        responseDiv = document.getElementById('ai-search');
+    // Function to send a question to the Flask server
+    async function askServer(questionText, source) {
+      // Show a temporary message while we wait for a response
+      if (source === 'header') {
+        // We'll just use an alert for the header. You could also display it in a div if you prefer.
+        alert("Searching for an answer...");
       } else {
-        responseDiv = document.getElementById('ask-response');
-        responseDiv.textContent = "Searching for an answer...";
+        document.getElementById('ask-response').textContent = "Searching for an answer...";
       }
 
       try {
-        const res = await fetch('/ask', {
+        // Make a POST request to the /ask endpoint
+        const response = await fetch('/ask', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          body: 'query=' + encodeURIComponent(question.text)
+          body: 'query=' + encodeURIComponent(questionText)
         });
-        const data = await res.json();
-        // Display the answer
-        if (question.source === 'header') {
-          alert("Answer: " + data.answer);
+        // Convert the response to JSON
+        const data = await response.json();
+        const answer = data.answer;
+
+        // Display the answer based on where the question came from
+        if (source === 'header') {
+          alert("Answer: " + answer);
         } else {
-          responseDiv.textContent = "Answer: " + data.answer;
+          document.getElementById('ask-response').textContent = "Answer: " + answer;
         }
       } catch (error) {
-        if (question.source === 'header') {
-          alert("Oops! Something went wrong.");
+        // If something goes wrong, display an error message
+        if (source === 'header') {
+          alert("Oops! Something went wrong. Please try again.");
         } else {
-          responseDiv.textContent = "Oops! Something went wrong. Please try again.";
+          document.getElementById('ask-response').textContent = "Oops! Something went wrong. Please try again.";
         }
       }
     }
 
-    // Handle the "Search" button in the header
+    // Header search button click
     document.getElementById('search-button').addEventListener('click', () => {
       const headerQuery = document.getElementById('ai-search').value.trim();
       if (headerQuery) {
-        askServer({ text: headerQuery, source: 'header' });
+        askServer(headerQuery, 'header');
       } else {
         alert("Please type a question first.");
       }
     });
 
-    // Handle the "Ask" button in the "Ask Me Anything" section
+    // "Ask Me Anything" button click
     document.getElementById('ask-button').addEventListener('click', () => {
-      const askInput = document.getElementById('ask-input').value.trim();
-      if (askInput) {
-        askServer({ text: askInput, source: 'main' });
+      const mainQuery = document.getElementById('ask-input').value.trim();
+      if (mainQuery) {
+        askServer(mainQuery, 'main');
       } else {
         document.getElementById('ask-response').textContent = "Please type a question first.";
       }
