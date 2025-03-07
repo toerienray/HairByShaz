@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Search - Ask & Get Answers</title>
+  <style>
+    /* Body and overall layout */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+    /* Container for the content */
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+    /* Headline styling */
+    h1 {
+      margin-bottom: 20px;
+      color: #4a90e2;
+    }
+    /* Input box styling */
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    /* Button styling */
+    button {
+      background-color: #4a90e2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #357ab7;
+    }
+    /* Result message styling */
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Search</h1>
+    <p>Type your question below and get an answer from our smart data machine!</p>
+    <form id="search-form">
+      <input type="text" id="query" name="query" placeholder="Your question here..." required>
+      <button type="submit">Search</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // When the form is submitted, run this function.
+    document.getElementById("search-form").addEventListener("submit", async function(event) {
+      event.preventDefault(); // Prevent the page from reloading
+      const query = document.getElementById("query").value;
+      // Show a loading message
+      document.getElementById("result").innerText = "Searching for an answer...";
+      
+      try {
+        // Send the query to your Flask backend at the /ask endpoint.
+        const response = await fetch("http://127.0.0.1:5000/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: "query=" + encodeURIComponent(query)
+        });
+        // Convert the response to JSON and display the answer.
+        const data = await response.json();
+        document.getElementById("result").innerText = "Answer: " + data.answer;
+      } catch (error) {
+        // If something goes wrong, show an error message.
+        document.getElementById("result").innerText = "Oops! Something went wrong. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
