@@ -16,7 +16,7 @@
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#ask">Ask</a></li>
-          <!-- New Smart Search link added here -->
+          <!-- New Smart Search link already here -->
           <li><a href="smart_search.html">Smart Search</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="personalized_assistance.html">Personalized Assistance</a></li>
@@ -24,10 +24,11 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <!-- Optional: Quick search in header -->
+      <!-- Quick search in header, now links to smart_search.html -->
       <div class="search-bar">
         <input type="text" id="ai-search" placeholder="Ask me anything..."/>
-        <button id="search-button">Search</button>
+        <!-- Added onclick to go to smart_search.html -->
+        <button id="search-button" onclick="location.href='smart_search.html'">Search</button>
       </div>
     </div>
   </header>
@@ -51,7 +52,8 @@
       <h2>Ask Me Anything</h2>
       <div class="ask-container">
         <input type="text" id="ask-input" placeholder="Type your question here..."/>
-        <button id="ask-button">Ask</button>
+        <!-- Added onclick to go to smart_search.html -->
+        <button id="ask-button" onclick="location.href='smart_search.html'">Ask</button>
       </div>
       <div id="ask-response" class="ask-response">
         <!-- AI responses will be displayed here -->
