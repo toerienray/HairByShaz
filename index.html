@@ -16,7 +16,6 @@
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#ask">Ask</a></li>
-          <!-- New Smart Search link already here -->
           <li><a href="smart_search.html">Smart Search</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="personalized_assistance.html">Personalized Assistance</a></li>
@@ -24,11 +23,11 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <!-- Quick search in header, now links to smart_search.html -->
+      <!-- Quick search in header -->
       <div class="search-bar">
         <input type="text" id="ai-search" placeholder="Ask me anything..."/>
-        <!-- Added onclick to go to smart_search.html -->
-        <button id="search-button" onclick="location.href='smart_search.html'">Search</button>
+        <!-- We'll handle this button with JavaScript, not a direct link -->
+        <button id="search-button">Search</button>
       </div>
     </div>
   </header>
@@ -52,11 +51,11 @@
       <h2>Ask Me Anything</h2>
       <div class="ask-container">
         <input type="text" id="ask-input" placeholder="Type your question here..."/>
-        <!-- Added onclick to go to smart_search.html -->
-        <button id="ask-button" onclick="location.href='smart_search.html'">Ask</button>
+        <!-- We'll handle this button with JavaScript, not a direct link -->
+        <button id="ask-button">Ask</button>
       </div>
       <div id="ask-response" class="ask-response">
-        <!-- AI responses will be displayed here -->
+        <!-- The AI responses will be displayed here -->
       </div>
     </div>
   </section>
@@ -74,7 +73,6 @@
         <div class="feature-item">
           <img src="image4.jpg" alt="Personalized Assistance"/>
           <h3>
-            <!-- Wrapped the feature title in a link to the reference page -->
             <a href="personalized_assistance.html" style="color: inherit; text-decoration: none;">
               Personalized Assistance
             </a>
@@ -122,7 +120,63 @@
     </div>
   </footer>
 
-  <!-- Main JavaScript Module -->
-  <script type="module" src="main.js"></script>
+  <!-- Main JavaScript (inline for simplicity) -->
+  <script>
+    // This function will send a POST request to the Flask server's /ask route
+    async function askServer(question) {
+      // Show a loading message in the relevant area
+      // We'll decide which area based on which button is clicked
+      let responseDiv;
+      if (question.source === 'header') {
+        responseDiv = document.getElementById('ai-search');
+      } else {
+        responseDiv = document.getElementById('ask-response');
+        responseDiv.textContent = "Searching for an answer...";
+      }
+
+      try {
+        const res = await fetch('/ask', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: 'query=' + encodeURIComponent(question.text)
+        });
+        const data = await res.json();
+        // Display the answer
+        if (question.source === 'header') {
+          alert("Answer: " + data.answer);
+        } else {
+          responseDiv.textContent = "Answer: " + data.answer;
+        }
+      } catch (error) {
+        if (question.source === 'header') {
+          alert("Oops! Something went wrong.");
+        } else {
+          responseDiv.textContent = "Oops! Something went wrong. Please try again.";
+        }
+      }
+    }
+
+    // Handle the "Search" button in the header
+    document.getElementById('search-button').addEventListener('click', () => {
+      const headerQuery = document.getElementById('ai-search').value.trim();
+      if (headerQuery) {
+        askServer({ text: headerQuery, source: 'header' });
+      } else {
+        alert("Please type a question first.");
+      }
+    });
+
+    // Handle the "Ask" button in the "Ask Me Anything" section
+    document.getElementById('ask-button').addEventListener('click', () => {
+      const askInput = document.getElementById('ask-input').value.trim();
+      if (askInput) {
+        askServer({ text: askInput, source: 'main' });
+      } else {
+        document.getElementById('ask-response').textContent = "Please type a question first.";
+      }
+    });
+  </script>
 </body>
 </html>
