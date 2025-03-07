@@ -4,119 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Modern AI Assistant</title>
-  <!-- If you have a style.css, link it here or inline your CSS -->
-  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
-  <style>
-    /* Simple minimal styling; adjust as needed */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    .header {
-      background: #f5f5f5;
-      padding: 20px;
-    }
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav ul {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-      padding: 0;
-    }
-    .nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    .search-bar {
-      display: flex;
-      gap: 10px;
-    }
-    #ai-search {
-      padding: 5px;
-    }
-    #search-button,
-    #ask-button {
-      background: #007BFF;
-      border: none;
-      color: #fff;
-      padding: 8px 15px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    #search-button:hover,
-    #ask-button:hover {
-      background: #0056b3;
-    }
-    /* Hero Section */
-    .hero {
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-    }
-    #hero-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-    }
-    .hero-content {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      text-align: center;
-    }
-    /* Ask Me Anything Section */
-    .ask {
-      padding: 40px 0;
-      text-align: center;
-    }
-    .ask-container {
-      display: inline-flex;
-      gap: 10px;
-    }
-    #ask-input {
-      padding: 5px;
-      width: 300px;
-    }
-    #ask-response {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    /* Footer */
-    .footer {
-      background: #f5f5f5;
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <header class="header">
     <div class="container header-container">
       <div class="logo">
-        <!-- Example logo -->
-        <img src="image2.jpg" alt="Logo" style="height: 50px;">
+        <img src="image2.jpg" alt="Logo"/>
       </div>
       <nav class="nav">
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#ask">Ask</a></li>
+          <!-- Smart Search link remains if you want a separate page -->
+          <li><a href="smart_search.html">Smart Search</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="personalized_assistance.html">Personalized Assistance</a></li>
           <li><a href="#about">About</a></li>
@@ -126,6 +27,7 @@
       <!-- Quick search in header -->
       <div class="search-bar">
         <input type="text" id="ai-search" placeholder="Ask me anything..."/>
+        <!-- Removed the old onclick; now we handle it via JavaScript -->
         <button id="search-button">Search</button>
       </div>
     </div>
@@ -138,7 +40,7 @@
       Your browser does not support the video tag.
     </video>
     <div class="hero-overlay"></div>
-    <div class="hero-content">
+    <div class="container hero-content">
       <h1>Welcome to Our AI Assistant Website</h1>
       <p>Your guide to the future, powered by AI.</p>
     </div>
@@ -150,9 +52,11 @@
       <h2>Ask Me Anything</h2>
       <div class="ask-container">
         <input type="text" id="ask-input" placeholder="Type your question here..."/>
+        <!-- Removed the old onclick; now we handle it via JavaScript -->
         <button id="ask-button">Ask</button>
       </div>
-      <div id="ask-response"></div>
+      <!-- This is where AI responses will be displayed -->
+      <div id="ask-response" class="ask-response"></div>
     </div>
   </section>
 
@@ -160,8 +64,26 @@
   <section id="features" class="features">
     <div class="container">
       <h2>Features</h2>
-      <div>
-        <p>Add your features here. (Images, etc.)</p>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <img src="image3.jpg" alt="Smart Search"/>
+          <h3>Smart Search</h3>
+          <p>Experience fast and intelligent search results.</p>
+        </div>
+        <div class="feature-item">
+          <img src="image4.jpg" alt="Personalized Assistance"/>
+          <h3>
+            <a href="personalized_assistance.html" style="color: inherit; text-decoration: none;">
+              Personalized Assistance
+            </a>
+          </h3>
+          <p>Get recommendations tailored just for you.</p>
+        </div>
+        <div class="feature-item">
+          <img src="image5.jpg" alt="Modern Design"/>
+          <h3>Modern Design</h3>
+          <p>Enjoy a sleek, modern, and intuitive user interface.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -174,7 +96,7 @@
         We are dedicated to integrating cutting-edge AI technologies with user-friendly design
         to deliver exceptional assistance and guidance.
       </p>
-      <img src="image6.jpg" alt="About Us" style="width:200px;">
+      <img src="image6.jpg" alt="About Us"/>
     </div>
   </section>
 
@@ -200,16 +122,19 @@
 
   <!-- Main JavaScript (inline for simplicity) -->
   <script>
-    // This function sends the user's question to /ask and displays the answer
+    // This function sends the user's question to your Flask server at /ask
     async function askServer(questionText, source) {
-      // If user is searching from the header, we can show an alert or something else
+      // Show a temporary message while waiting for the response
       if (source === 'header') {
+        // For the header search, let's just show an alert that we're searching
         alert("Searching for an answer...");
       } else {
+        // For the main "Ask Me Anything" section, we display a message in ask-response
         document.getElementById('ask-response').textContent = "Searching for an answer...";
       }
 
       try {
+        // Make a POST request to /ask
         const response = await fetch('/ask', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -218,12 +143,14 @@
         const data = await response.json();
         const answer = data.answer;
 
+        // Display the answer
         if (source === 'header') {
           alert("Answer: " + answer);
         } else {
           document.getElementById('ask-response').textContent = "Answer: " + answer;
         }
       } catch (error) {
+        // If something goes wrong, display an error message
         if (source === 'header') {
           alert("Oops! Something went wrong. Please try again.");
         } else {
